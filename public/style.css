@@ -1,0 +1,94 @@
+/** {
+  border: 1px dashed gold;
+}*/
+
+body {
+  background: Gainsboro;
+  /*font-family: 'Raleway', sans-serif;*/
+}
+
+.jumbotron {
+background-image: url('http://qmedinfo.pl/images/templates/news.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 560px;
+/*border: 1px solid red;*/
+font-family: 'Permanent Marker', cursive;
+}
+
+.smarty {
+text-align: center;
+/*width: 60%;*/
+/*height: 100%;*/
+}
+
+.about {
+  background-color: whitesmoke;
+  /*opacity: 0.7;*/
+  /*font-size: 40px;*/
+  color: black;
+  /*width: 60%;*/
+  /*height: 5em;*/
+  border: 1px solid lightgrey;
+  margin: 0 auto;
+  padding: 1em;
+  /*padding-top: 2em;*/
+}
+
+.newsHeader {
+text-align: center; padding-bottom: 1em;
+font-family: 'Permanent Marker', cursive;
+}
+
+ul {
+  list-style: none;
+}
+
+.authTitle {
+  font-weight: bold;
+}
+
+ #newsApi {
+  float: left;
+  border: 1px solid black;
+  width: 45%;
+  padding-top: 1em;
+  background: whitesmoke;
+}
+
+.urlImg {
+  width: 50%;
+  /*border: 1px dotted purple;*/
+}
+
+.spBoardTitle{
+  font-family: 'Permanent Marker', cursive;
+}
+
+.discussionBoard {
+  border: 1px solid pink;
+  width: 45%;
+  float: right;
+  padding-left: 1%;
+  background: whitesmoke;
+}
+
+.onePostName {
+  font-weight: bold;
+}
+
+.singlePost {
+  /*padding-right: 1em;*/
+  float: left;
+}
+
+.commentThread {
+  text-align: center;
+}
+
+.commentTitle {
+  padding-top: .01em;
+  font-weight: bold;
+  font-family: 'Permanent Marker', cursive;
+  margin: 0;
+}

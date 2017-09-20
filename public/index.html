@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="smartypants">
+<head>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <!-- angular  -->
+  <script type="text/javascript" src="/app.js"></script>
+  <!-- app.js -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <!-- bootstrap -->
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Crimson+Text|Nunito|Permanent+Marker|Raleway|Seymour+One|Slabo+27px" rel="stylesheet">
+  <!-- google fonts -->
+  <link rel="stylesheet" href="/style.css">
+  <!-- style.css -->
+  <title></title>
+</head>
+<body ng-controller="spController as ctrl">
+  <!-- {{ctrl.message}} -->
+
+
+  <div class="jumbotron">
+    <h1 class="smarty">SMARTY PANTS</h1>
+  </div>
+  <p class="about">
+    Listen, I know it's hard to live your life and stay current on the dumpster fire that's going on in the world. I don't want to scare you, but it's bad out there. I want to help you sound as smart as possible in those dreadful run-ins with your neighbor. Worse even, when you're forced to have small talk with your co-workers while you wait for the coffee to brew. If you feel passionate about something you read, please discuss and be a part of the conversation!
+  </p> <br><br>
+  <!-- end of jumbotron -->
+  <!-- ******************************************************************************************* -->
+  <!-- beginning of new api info - list of top articles  -->
+  <div class="container" id="newsApi">
+    <div class="newsResults">
+      <h2 class="newsHeader">Stay in the know! Latest Articles:</h2>
+      <ul ng-repeat="article in ctrl.news.articles">
+        <li>
+          <div class="authTitle">
+            {{article.author}} <br>
+            {{article.title}}
+          </div>
+          {{article.description}} <br>
+          {{article.url}} <br>
+          {{article.publishedAt}} <br>
+          <button type="button" class="btn btn-light" ng-click="ctrl.grabTitle(article)">discuss</button> <br>
+          <br>
+        </li>
+        <div>
+          <img class="urlImg" ng-src="{{article.urlToImage}}">
+        </div>
+      </ul>
+    </div>
+  </div>
+  <!-- ********************************************** -->
+  <!-- END of new api info - list of top articles  -->
+
+  <!-- modal for new post on board section  -->
+  <!-- <div class="modal" ng-click="ctrl.modal()">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+  <h2>Smarty Pants: Discussion</h2>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body"> -->
+<!-- regular form starts here, above is modal divs  -->
+<div class="container" id="newPostModal">
+  <form ng-submit="ctrl.newPost();">
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input ng-model="ctrl.formData.username" type="text" class="form-control" placeholder="Enter your name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="articleTitle" class="col-sm-2 col-form-label">Article to discuss</label>
+      <div class="col-sm-10">
+        {{ctrl.title}}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputContent" class="col-sm-2 col-form-label">Share your thoughts</label>
+      <div class="col-sm-10">
+        <textarea ng-model="ctrl.formData.content" type="text" class="form-control" placeholder="Enter text here"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <input type="submit" class="btn btn-light" place="submit post">
+      </div>
+    </div>
+  </form>
+</div>
+<!-- end of regular form  -->
+<!-- </div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div> -->
+<!--  END OF modal for create post section  -->
+
+<!-- beginning of discussion board section  -->
+<div class="container">
+  <div class="discussionBoard">
+    <h2 class="spBoardTitle">Smarty Pants Discussion Board</h2>
+    <ul ng-repeat="allPosts in ctrl.newFormPost">
+      <li>
+        <div class="singlePost">
+          <p class="onePostName">{{allPosts.username}}</p>
+          {{allPosts.title}}<br>
+          {{allPosts.content}}<br>
+          <hr>
+          <!-- split posts and list of comments for each post -->
+          <div class="commentThread">
+            <ul ng-repeat="comments in allPosts.comments">
+              <li> <br>
+                <p class="commentTitle">Comments about this post:</p>
+                <p class="onePostName">{{comments.username}}</p>
+                {{comments.addComment}}<br><hr>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button ng-submit="ctrl.createComment();" type="button" class="btn btn-light">add comment</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- END of discussion board section  -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+</body>
+</html>
