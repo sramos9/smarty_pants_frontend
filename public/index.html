@@ -110,27 +110,58 @@
           <p class="onePostName">{{allPosts.username}}</p>
           {{allPosts.title}}<br>
           {{allPosts.content}}<br>
+          <br>
+          <button ng-click="toggleModal()" type="button" class="btn btn-light">add comment</button>
+          <hr>
+          <p class="commentTitle">Comments about this post:</p> <br>
           <hr>
           <!-- split posts and list of comments for each post -->
           <div class="commentThread">
             <ul ng-repeat="comments in allPosts.comments">
               <li> <br>
-                <p class="commentTitle">Comments about this post:</p>
                 <p class="onePostName">{{comments.username}}</p>
                 {{comments.addComment}}<br><hr>
               </li>
             </ul>
           </div>
         </div>
-        <button ng-submit="ctrl.createComment();" type="button" class="btn btn-light">add comment</button>
+
       </li>
     </ul>
   </div>
 </div>
-
-
-
 <!-- END of discussion board section  -->
+
+  <!-- add comment modal  -->
+<div class=""="commentModal">
+  <modal-dialog show='modalShown' width='750px' height='60%'>
+    <h2>Discuss this Post?</h2>
+    <form ng-submit="ctrl.createComment();">
+      <div class="form-group row">
+        <label for="inputUsername" class="col-sm-2 col-form-label">Name
+        </label>
+        <div class="col-sm-10">
+          <input ng-model="ctrl.commentData.username" type="text" class="form-control" placeholder="Enter your name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputAddComment" class="col-sm-2 col-form-label">Add your comment</label>
+        <div class="col-sm-10">
+          <textarea ng-model="ctrl.commentData.content" type="text" class="form-control" placeholder="Enter text here"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <!-- <input type="submit" class="btn btn-light" place="submit comment"> -->
+          <button ng-click='toggleModal()' type="submit" class="btn btn-light">submit</button>
+        </div>
+      </div>
+    </form>
+  </modal-dialog>
+</div>
+  <!-- end of modal  -->
+
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </body>
