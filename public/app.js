@@ -56,9 +56,9 @@ this.newPost = function() {
       //how to use schema properties in ajax
   }).then(function(response) {
     console.log(response);
-    controller.post = response.data;
-    console.log('this is response.data: ', response.data);
 
+    // this.post = response.data;
+    // console.log('this is this.post: ', this.post);
     console.log(this);
     this.getPosts();
   }.bind(this),function(error) {
@@ -82,11 +82,14 @@ this.getPosts = function() {
     url: this.url + '/posts'
   }).then(function(response) {
     console.log(response);
-    console.log(this);
+    // console.log(this);
     this.newFormPost = response.data;
-    controller.post_id = response.data.id;
+    // this.post_id = response.data.id;
+    // console.log(response.data.id);
     this.postId = response.data[0].id;
     console.log('this.postId: ', this.postId);
+    console.log('typeof response.data', typeof response.data );
+
     // console.log(this.post_id);
   }.bind(this),function(error) {
       console.log(error);
@@ -104,24 +107,25 @@ this.getPosts();
 //                COMMENTS SECTION
 
 // GET ROUTE TO SHOW COMMENTS ON POSTS
-this.getComments = function() {
-  $http({
-    method: 'GET',
-    url: this.url + '/posts/' + this.postId +'/comments/'
-
-  }).then(function(response) {
-    this.postComment = response.data;
-    console.log(this.postComment);
-    console.log(response);
-    // console.log(this);
-    // console.log(controller.post_id);
-  }.bind(this),function(error) {
-      console.log(error);
-    }
-  )
-};
-
-this.getComments();
+// this.getComments = function() {
+//   $http({
+//     method: 'GET',
+//     url: this.url + '/posts/' + this.postId +'/comments/'
+//
+//   }).then(function(response) {
+//     this.postComment = response.data;
+//     console.log(this.postComment);
+//     console.log(response.data.articles);
+//     console.log(response);
+//     // console.log(this);
+//     // console.log(controller.post_id);
+//   }.bind(this),function(error) {
+//       console.log(error);
+//     }
+//   )
+// };
+//
+// this.getComments();
 // -----------------------------------------------------------------------------
 //      CREATE COMMENT POST ROUTE
 
