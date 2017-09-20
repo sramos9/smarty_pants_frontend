@@ -14,6 +14,11 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
   };
+
+  $scope.togglePostModal = function() {
+    $scope.modalShown2 = !$scope.modalShown2;
+
+  }
 // ----------------------------------
 //      News API  to GET news sortby Latest
 // ----------------------------------
@@ -85,12 +90,8 @@ this.getPosts = function() {
     // console.log(this);
     this.newFormPost = response.data;
     // this.post_id = response.data.id;
-    // console.log(response.data.id);
-    this.postId = response.data[0].id;
-    console.log('this.postId: ', this.postId);
-    console.log('typeof response.data', typeof response.data );
-
-    // console.log(this.post_id);
+    console.log(response.data);
+    // console.log('typeof response.data', typeof response.data );
   }.bind(this),function(error) {
       console.log(error);
     }
@@ -98,34 +99,51 @@ this.getPosts = function() {
 };
 
 this.getPosts();
+
+//-----------------------------------------------------------------------------
+//        show all posts on window onload
+// -----------------------------------------------------------------------------
+
+// this grabs the current post id on ng-click
+this.currentPost = function(id) {
+  $http({
+    method: 'GET',
+    url: this.url + '/posts/' + id
+  }).then(function(response) {
+    controller.currentPostId = response.data.id
+    console.log(controller.currentPostId);
+
+  })
+};
+// this.currentPost();
+
+//-------------------------------------------
+//                COMMENTS SECTION
+//-------------------------------------------
 //add a comment to a post
 // /posts/post_id/comments
 
-// -----------------------------------------------------------------------------
-//        show all posts on window onload
-// -----------------------------------------------------------------------------
-//                COMMENTS SECTION
 
 // GET ROUTE TO SHOW COMMENTS ON POSTS
-// this.getComments = function() {
-//   $http({
-//     method: 'GET',
-//     url: this.url + '/posts/' + this.postId +'/comments/'
-//
-//   }).then(function(response) {
-//     this.postComment = response.data;
-//     console.log(this.postComment);
-//     console.log(response.data.articles);
-//     console.log(response);
-//     // console.log(this);
-//     // console.log(controller.post_id);
-//   }.bind(this),function(error) {
-//       console.log(error);
-//     }
-//   )
-// };
-//
-// this.getComments();
+this.getComments = function() {
+  $http({
+    method: 'GET',
+    url: this.url + '/posts/' + this.currentPostId +'/comments/'
+
+  }).then(function(response) {
+    this.postComment = response.data;
+    console.log(this.postComment);
+    console.log(response.data.articles);
+    console.log(response);
+    // console.log(this);
+    // console.log(controller.post_id);
+  }.bind(this),function(error) {
+      console.log(error);
+    }
+  )
+};
+
+this.getComments();
 // -----------------------------------------------------------------------------
 //      CREATE COMMENT POST ROUTE
 
@@ -133,25 +151,26 @@ this.getPosts();
 this.createComment = function(){
   $http({
     method: 'POST',
-    url: this.url + '/posts/' + this.postComment +'/comments',
+    url: this.url + '/posts/' + this.currentPostId +'/comments',
 // this doesn't work (can't get the id)
-    data: this.commentData
+    data: { comment: {username: this.commentData.username, addComment: this.commentData.addComment, post_id: this.currentPostId}}
 
   }).then(function(response) {
-    controller.comment = response.data;
-
-
-    console.log(controller.comment);
-    console.log('this should be response.data: ', resonse.data);
+    // controller.comment = response.data;
+    //
+    //
+    // console.log(controller.comment);
+    // console.log('this should be response.data: ', resonse.data);
     console.log(response);
-    console.log(this);
-    console.log(this.post_id);
+    // console.log(this);
+    // console.log(this.post_id);
   }.bind(this),function(error) {
       console.log(error);
+      this.getPosts();
     }
   )
 };
-
+// this.getComments();
 
 
 
