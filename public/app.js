@@ -39,16 +39,12 @@ this.getNews();
 // ----------------------------------
 //             POSTS SECTION
 
-this.grabTitle = function( param1){
+this.grabTitle = function(param1){
   this.title = param1.title
-      // this.modal = function() {
-      //   $('#myModal').on('shown.bs.modal', function () {
-      //   $('#myInput').focus()
-      // })
-    // }
 }
+
 // -------------------------------
-//      grab news api title and store to variable
+//    ^^  grab news api title and store to variable
 // ----------------------------------
 
 this.newPost = function() {
@@ -142,36 +138,64 @@ this.getComments = function() {
     }
   )
 };
-
 this.getComments();
 // -----------------------------------------------------------------------------
 //      CREATE COMMENT POST ROUTE
 
-
 this.createComment = function(){
   $http({
     method: 'POST',
-    url: this.url + '/posts/' + this.currentPostId +'/comments',
-// this doesn't work (can't get the id)
+    url: this.url + '/posts/' + this.currentPostId +'/comments/',
     data: { comment: {username: this.commentData.username, addComment: this.commentData.addComment, post_id: this.currentPostId}}
-
   }).then(function(response) {
     // controller.comment = response.data;
-    //
-    //
     // console.log(controller.comment);
     // console.log('this should be response.data: ', resonse.data);
     console.log(response);
+    this.getPosts();
     // console.log(this);
     // console.log(this.post_id);
   }.bind(this),function(error) {
       console.log(error);
-      this.getPosts();
-    }
-  )
+    })
 };
-// this.getComments();
+//-------------------------------------------
+//               GRAB COMMENT ID
+//-------------------------------------------
+this.currentComment = function() {
+  $http({
+    method: 'GET',
+    url: this.url + '/posts/' + this.currentPostId +'/comments/'
+  }).then(function(response) {
+      controller.currentComment = response.data.id
+    console.log(controller.currentCommentId);
 
+  })
+};
+
+//------------------------------------------
+//                COMMENTS UPDATE
+//-------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------
+//                COMMENTS DELETE
+//-------------------------------------------
+this.deleteComment = function(commentsId){
+  $http({
+    method: 'DELETE',
+    url: this.url + '/posts/' + this.currentPostId +'/comments/' + commentsId
+  }).then(function(response) {
+    console.log(response);
+    this.getPosts();
+  }.bind(this),function(error) {
+    console.log(error);
+  })
+};
 
 
 //end of spController

@@ -101,22 +101,32 @@
     <h2 class="spBoardTitle">Smarty Pants Discussion Board</h2>
     <ul ng-repeat="allPosts in ctrl.newFormPost">
       <li>
-        <div ng-click="ctrl.currentPost(allPosts.id)" class="singlePost">
-          <p class="onePostName">{{allPosts.username}}</p>
-          {{allPosts.title}}<br>
-          {{allPosts.content}}<br>
-          <br>
-          <button ng-click="toggleModal()" type="button" class="btn btn-light">add comment</button>
-          <hr>
-          <p class="commentTitle">Comments about this post:</p> <br>
+        <div class="singlePost">
+          <div ng-click="ctrl.currentPost(allPosts.id)">
+            <p class="onePostName">{{allPosts.username}}</p>
+            {{allPosts.title}}<br>
+            {{allPosts.content}}<br>
+            <br>
+            <button ng-click="toggleModal()" type="button" class="btn btn-light">add comment</button>
+            <hr>
+            <p class="commentTitle">Comments about this post:</p> <br>
+          </div>
           <hr>
           <!-- split posts and list of comments for each post -->
           <div class="commentThread">
             <ul ng-repeat="comments in allPosts.comments">
+              <div ng-click="ctrl.currentComment(comments.id);">
               <li> <br>
-                <p class="onePostName">{{comments.username}}</p>
-                {{comments.addComment}}<br><hr>
-              </li>
+                  <!-- <p>{{comments.id}}</p> -->
+                  <p class="onePostName">{{comments.username}}</p>
+                  {{comments.addComment}}<br>
+
+                  <input ng-click="ctrl.deleteComment(comments.id);" type="submit" value="Delete" class="btn btn-light">
+
+                  <!-- <button  type="button" >Delete</button> -->
+                  <hr>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
