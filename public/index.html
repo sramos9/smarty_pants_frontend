@@ -17,6 +17,48 @@
 <body ng-controller="spController as ctrl">
   <!-- {{ctrl.message}} -->
 
+  <!-- REGISTER form  -->
+  <div ng-if="ctrl.loggedIn==false">
+    <a ng-click="ctrl.displayReg=!ctrl.displayReg" class="reg">Register</a>
+    <div ng-if="ctrl.displayReg==true">
+      <form ng-submit="ctrl.createUser(userPass)">
+        <input type="text" ng-model="userPass.username" placeholder="username"/>
+        <input type="password" ng-model="userPass.password" placeholder="password"/>
+        <input type="submit"/>
+      </form>
+    </div>
+  </div><br>
+
+  <!-- end REGISTER form  -->
+
+
+  <!-- login form  -->
+  <!-- <h3>Login</h3> -->
+  <div>
+    <div ng-if="ctrl.loggedIn==false" class="loginContainer_small">
+      <form ng-submit="ctrl.login(userPass);">
+          <input type="text" ng-model="userPass.username" placeholder="username"/>
+          <input type="password" ng-model="userPass.password" placeholder="password"/>
+          <input type="submit"/>
+      </form>
+    </div>
+    <div ng-if="ctrl.loggedIn==true">
+      <p>  Logged in as {{ ctrl.user.username }} </p>
+        <a ng-click"ctrl.logout()">Log Out</a>
+
+    </div>
+</div>
+  <!--  end login form  -->
+
+
+  <!-- <h4 ng-click="ctrl.getUsers()">click to see secret</h4> -->
+
+  <!-- <div> {{ctrl.error}}</div>
+  <div ng-repeat="user in ctrl.users">
+   <h1>{{user.username}}</h1> {{ctrl.error}}
+ </div> -->
+
+
 
   <div class="jumbotron">
     <h1 class="smarty">SMARTY PANTS</h1>

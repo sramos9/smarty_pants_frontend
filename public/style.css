@@ -7,6 +7,16 @@ body {
   /*font-family: 'Raleway', sans-serif;*/
 }
 
+.loginContainer_small{
+  border: 1px solid #DDDDDD;
+  padding: .3em;
+  background-color: #F9F9F9;
+}
+
+.reg{
+  font-size: 25px;
+}
+
 .jumbotron {
 background-image: url('http://qmedinfo.pl/images/templates/news.jpg');
 background-size: cover;
@@ -126,3 +136,7 @@ ul {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+
+/*modal code from tutorial
+http://adamalbrecht.com/2013/12/12/creating-a-simple-modal-dialog-directive-in-angular-js/*/

@@ -10,6 +10,13 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   this.formData = {};
   // this.testArray = [1, 2, 3];
   this.commentData = [];
+  this.user = {};
+  this.users = [];
+  this.userPass = {};
+  this.loggedIn = false;
+  this.displayReg = false;
+
+
 
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
@@ -18,7 +25,67 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   $scope.togglePostModal = function() {
     $scope.modalShown2 = !$scope.modalShown2;
 
-  }
+  };
+
+  // ----------------------------------
+  //   login user  --> /user/login
+  // ----------------------------------
+this.login = function(userPass) {
+  $http({
+    method: 'POST',
+    url: this.url + '/users/login',
+    data: { user: { username: userPass.username, password: userPass.password }},
+  }).then(function(response) {
+    console.log(response);
+    this.user = response.data.user;
+    this.logginIn = true;
+    localStorage.setItem('token', JSON.stringify(response.data.token));
+    this.getUsers();
+    this.userId = response.data.user.id;
+    console.log(this.userId);
+  }.bind(this));
+};
+
+this.getUsers = function() {
+  $http({
+    url: this.url + '/users',
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+    }
+  }).then(function(response) {
+    console.log(response);
+    if (response.data.status == 401) {
+        this.error = "Unauthorized";
+    } else {
+      this.users = response.data;
+    }
+  }.bind(this));
+};
+
+//-------------------------------
+//    /users/logout
+
+this.logout = function(){
+  localStorage.clear('token');
+  location.reload();
+};
+// ----------------------------
+ // new user:   /users
+// ---------------------------------
+
+this.createUser = function(userPass){
+    $http({
+      url: this.url + '/users',
+      method: 'post',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(function(response){
+      console.log(response);
+      this.user = response.data.user;
+      this.loggedIn = true;
+      controller.getUsers();
+    }.bind(this))
+  };
 // ----------------------------------
 //      News API  to GET news sortby Latest
 // ----------------------------------
