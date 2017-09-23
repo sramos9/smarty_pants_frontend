@@ -15,8 +15,8 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   this.userPass = {};
   this.loggedIn = false;
   this.displayReg = false;
-
-
+  this.displayLog = false;
+  this.commentToDelete;
 
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
@@ -24,9 +24,21 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
 
   $scope.togglePostModal = function() {
     $scope.modalShown2 = !$scope.modalShown2;
-
   };
 
+  $scope.toggleDeleteModal = function(commentsId) {
+    $scope.modalShown3 = !$scope.modalShown3;
+    this.commentToDelete = commentsId;
+    controller.currentComment(this.commentToDelete);
+    console.log(this.commentToDelete);
+  };
+
+  $scope.toggleEditModal = function(commentsId) {
+    $scope.modalShown4 = !$scope.modalShown4;
+    this.commentToEdit = commentsId;
+    controller.currentComment(this.commentToDelete);
+    console.log(this.commentToDelete);
+  };
   // ----------------------------------
   //   login user  --> /user/login
   // ----------------------------------
@@ -38,11 +50,18 @@ this.login = function(userPass) {
   }).then(function(response) {
     console.log(response);
     this.user = response.data.user;
-    this.logginIn = true;
     localStorage.setItem('token', JSON.stringify(response.data.token));
+    if(this.user === undefined){
+      this.loggedIn = false;
+    } else {
+      this.loggedIn = true;
+    }
+    console.log('user logged in? ', this.loggedIn);
+    console.log('user is: ', this.user);
     this.getUsers();
     this.userId = response.data.user.id;
     console.log(this.userId);
+
   }.bind(this));
 };
 
@@ -183,20 +202,21 @@ this.currentPost = function(id) {
 //-------------------------------------------
 //                COMMENTS SECTION
 //-------------------------------------------
-//add a comment to a post
-// /posts/post_id/comments
 
+// user_post_comments GET
+//   ***    /users/:user_id/posts/:post_id/comments
 
 // GET ROUTE TO SHOW COMMENTS ON POSTS
 this.getComments = function() {
   $http({
     method: 'GET',
-    url: this.url + '/posts/' + this.currentPostId +'/comments/'
+    url: this.url + '/users/' + this.userId + '/posts/' + this.currentPostId +'/comments/'
 
   }).then(function(response) {
     this.postComment = response.data;
     console.log(this.postComment);
     console.log(response.data.articles);
+    console.log(this.userId);
     console.log(response);
     // console.log(this);
     // console.log(controller.post_id);
@@ -208,62 +228,105 @@ this.getComments = function() {
 this.getComments();
 // -----------------------------------------------------------------------------
 //      CREATE COMMENT POST ROUTE
+// user_post_comments POST
+//   ***    /users/:user_id/posts/:post_id/comments
 
-this.createComment = function(){
-  $http({
-    method: 'POST',
-    url: this.url + '/posts/' + this.currentPostId +'/comments/',
-    data: { comment: {username: this.commentData.username, addComment: this.commentData.addComment, post_id: this.currentPostId}}
-  }).then(function(response) {
-    // controller.comment = response.data;
-    // console.log(controller.comment);
-    // console.log('this should be response.data: ', resonse.data);
-    console.log(response);
-    this.getPosts();
-    // console.log(this);
-    // console.log(this.post_id);
-  }.bind(this),function(error) {
-      console.log(error);
-    })
-};
+  this.createComment = function(){
+    if(this.loggedIn === false){
+    console.log('cannot create comment, not logged in');
+    } else {
+      this.loggedIn = true;
+
+    $http({
+      method: 'POST',
+      url: this.url + '/users/' + this.userId + '/posts/' + this.currentPostId +'/comments/',
+      data: { comment: {username: this.commentData.username, addComment: this.commentData.addComment, post_id: this.currentPostId,
+      user_id: this.userId}}
+    }).then(function(response) {
+
+      console.log(response);
+      this.getPosts();
+      // console.log(this);
+      // console.log(this.post_id);
+    }.bind(this),function(error) {
+        console.log(error);
+      })
+  };
+
+}
+
+
 //-------------------------------------------
 //               GRAB COMMENT ID
 //-------------------------------------------
-this.currentComment = function() {
-  $http({
-    method: 'GET',
-    url: this.url + '/posts/' + this.currentPostId +'/comments/'
-  }).then(function(response) {
-      controller.currentComment = response.data.id
-    console.log(controller.currentCommentId);
-
-  })
+this.currentComment = function(commentsId) {
+  this.commentToDelete = commentsId;
+  this.deleteComment();
+  this.commentToEdit = commentsId;
+  this.editComment();
+  console.log(commentsId, 'commentsId in current comment function line 258');
 };
 
 //------------------------------------------
 //                COMMENTS UPDATE
+//  /users/:user_id/posts/:post_id/comments/:id
 //-------------------------------------------
 
+this.editComment = function(commentsId){
+  console.log(commentsId, '******* comment to edit');
+  if(this.loggedIn === false){
+    console.log('cannot edit comment, not logged in');
+  // } else if (this.userId != this.commentsId) {
+  //     this.loggedIn = false;
+    // trying to say if logged in but not the user that created this comment then can't delete
 
+  } else {
+    this.loggedIn = true;
+
+    $http({
+      method: 'PUT',
+      url: this.url + '/users/' + this.userId + '/posts/' + this.currentPostId +'/comments/' + commentsId,
+      data: { comment: {username: this.commentData.username, addComment: this.commentData.addComment, post_id: this.currentPostId,
+      user_id: this.userId}}
+    }).then(function(response) {
+      console.log(response);
+      this.getPosts();
+    }.bind(this),function(error) {
+      console.log(error);
+    })
+  }
+};
 
 
 
 
 //-------------------------------------------
 //                COMMENTS DELETE
+//  /users/:user_id/posts/:post_id/comments/:id
 //-------------------------------------------
-this.deleteComment = function(commentsId){
-  $http({
-    method: 'DELETE',
-    url: this.url + '/posts/' + this.currentPostId +'/comments/' + commentsId
-  }).then(function(response) {
-    console.log(response);
-    this.getPosts();
-  }.bind(this),function(error) {
-    console.log(error);
-  })
-};
 
+this.deleteComment = function(commentsId){
+  console.log(commentsId, '******* comment to delete');
+  if(this.loggedIn === false){
+    console.log('cannot delete comment, not logged in');
+  // } else if (this.userId != this.commentsId) {
+  //     this.loggedIn = false;
+    // trying to say if logged in but not the user that created this comment then can't delete
+
+  } else {
+    this.loggedIn = true;
+
+    $http({
+      method: 'DELETE',
+      url: this.url + '/users/' + this.userId + '/posts/' + this.currentPostId +'/comments/' + commentsId
+    }).then(function(response) {
+      console.log(response);
+      this.getPosts();
+    }.bind(this),function(error) {
+      console.log(error);
+    })
+  }
+};
 
 //end of spController
 }]);

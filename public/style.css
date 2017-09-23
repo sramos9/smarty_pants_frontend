@@ -20,16 +20,17 @@ body {
 .jumbotron {
 background-image: url('http://qmedinfo.pl/images/templates/news.jpg');
 background-size: cover;
+max-width: 100%;
 background-repeat: no-repeat;
 height: 560px;
 /*border: 1px solid red;*/
 font-family: 'Permanent Marker', cursive;
 }
 
-.smarty {
+#smarty {
 text-align: center;
-/*width: 60%;*/
-/*height: 100%;*/
+bottom: -100%;
+
 }
 
 .about {
@@ -59,11 +60,14 @@ ul {
 }
 
  #newsApi {
-  float: left;
+  /*float: left;*/
   border: 1px solid black;
-  width: 45%;
+  /*max-width: 45%;
   padding-top: 1em;
   padding-left: 1em;
+  margin-left: 4em;
+  */
+  margin-right: 1em;
   background: whitesmoke;
 }
 
@@ -74,14 +78,16 @@ ul {
 
 .spBoardTitle{
   font-family: 'Permanent Marker', cursive;
+  text-align: center;
 }
 
-.discussionBoard {
-  border: 1px solid pink;
-  width: 49%;
-  float: right;
-  padding-left: 1%;
+#discussionBoard {
+  border: 1px solid black;
+  /*max-width: 50%;*/
+  /*float: right;*/
+  /*padding-left: 1%;*/
   background: whitesmoke;
+  margin-left: 1em;
 }
 
 .onePostName {
