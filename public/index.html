@@ -127,13 +127,14 @@
                     {{comments.addComment}}
                     <br><hr>
 
-                    <div ng-if="ctrl.loggedIn===true">
-                      <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button>
+                    <div ng-if=" ctrl.userId===ctrl.comments.user_id">
+                      <!-- <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button> -->
                     </div>
-
-                    <div ng-if="ctrl.loggedIn===true">
-                      <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button>
+                    <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button>
+                    <div ng-if="ctrl.userId===ctrl.comments.user_id">
+                      <!-- <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button> -->
                     </div>
+                    <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button>
                   </li>
                 </div>
               </ul>
