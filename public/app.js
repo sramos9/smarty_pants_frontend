@@ -17,6 +17,7 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   this.displayReg = false;
   this.displayLog = false;
   this.commentToDelete;
+  this.commentToEdit;
 
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
@@ -36,8 +37,8 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   $scope.toggleEditModal = function(commentsId) {
     $scope.modalShown4 = !$scope.modalShown4;
     this.commentToEdit = commentsId;
-    controller.currentComment(this.commentToDelete);
-    console.log(this.commentToDelete);
+    controller.currentComment(this.commentToEdit);
+    console.log(this.commentToEdit);
   };
   // ----------------------------------
   //   login user  --> /user/login
@@ -286,10 +287,12 @@ this.editComment = function(commentsId){
     $http({
       method: 'PUT',
       url: this.url + '/users/' + this.userId + '/posts/' + this.currentPostId +'/comments/' + commentsId,
-      data: { comment: {username: this.commentData.username, addComment: this.commentData.addComment, post_id: this.currentPostId,
+      data: { comment: {username: this.updatedCommentData.username, addComment: this.updatedCommentData.addComment, post_id: this.currentPostId,
       user_id: this.userId}}
     }).then(function(response) {
       console.log(response);
+      this.newEditComment = response.data;
+      console.log(this.newEditComment);
       this.getPosts();
     }.bind(this),function(error) {
       console.log(error);

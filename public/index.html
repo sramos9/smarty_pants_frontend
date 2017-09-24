@@ -24,7 +24,7 @@
       <form ng-submit="ctrl.createUser(userPass)">
         <input type="text" ng-model="userPass.username" placeholder="username"/>
         <input type="password" ng-model="userPass.password" placeholder="password"/>
-        <input type="submit"/>
+        <input class="btn btn-dark" type="submit" />
       </form>
     </div>
   </div><br>
@@ -37,12 +37,12 @@
       <form ng-submit="ctrl.login(userPass);">
           <input type="text" ng-model="userPass.username" placeholder="username"/>
           <input type="password" ng-model="userPass.password" placeholder="password"/>
-          <input type="submit"/>
+          <input class="btn btn-dark" type="submit"/>
       </form>
     </div>
-    <div ng-if="ctrl.loggedIn==true">
+    <div ng-if="ctrl.loggedIn">
       <p>  Logged in as {{ ctrl.user.username }} </p>
-        <a ng-click"ctrl.logout()">Log Out</a>
+        <a ng-click"ctrl.logout()" class="btn btn-dark">Log Out</a>
 
     </div>
   </div>
@@ -81,13 +81,17 @@
           </div>
           {{article.description}} <br>
           {{article.url}} <br>
-          {{article.publishedAt}} <br>
-          <button type="button" class="btn btn-light"  ng-click="togglePostModal()">discuss</button> <br>
+          {{article.publishedAt}}
+           <br>
           <br>
+          <div>
+            <img class="urlImg"  ng-src="{{article.urlToImage}}">
+            <br>
+            <br>
+            <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
+          </div>
+          <hr class="cloud">
         </li>
-        <div>
-          <img class="urlImg"  ng-src="{{article.urlToImage}}">
-        </div>
       </ul>
     </div>
   </div>
@@ -106,43 +110,44 @@
               {{allPosts.title}}<br>
               {{allPosts.content}}<br>
               <br>
-              <button  ng-click="toggleModal()" type="button" class="btn btn-light">add comment</button>
+              <button ng-click="toggleModal()" type="button" class="btn btn-dark">add comment</button>
               <hr>
-              <p class="commentTitle">Comments about this post:</p> <br>
             </div>
-            <hr>
+            <!-- <hr> -->
             <!-- split posts and list of comments for each post -->
             <div class="commentThread">
+              <p class="commentTitle">Comments about this post:</p> <br>
               <ul ng-repeat="comments in allPosts.comments">
                 <div ng-click="ctrl.currentComment(comments.id);">
-                <li> <br>
-                    <!-- <p>{{comments.id}}</p> -->
-                    <p class="onePostName">{{comments.username}}</p>
-                    {{comments.addComment}}<br>
-                    <!-- <input ng-click="toggleDeleteModal()" value="Delete" class="btn btn-light"> -->
+
+                <li><br>
+                    <p class="onePostName">
+                      {{comments.username}}
+                    </p>
+                    {{comments.addComment}}
+                    <br><hr>
+
                     <div ng-if="ctrl.loggedIn===true">
-                      <button type="button" class="btn btn-light"  ng-click="toggleDeleteModal(comments.id)">Delete</button>
+                      <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button>
                     </div>
 
                     <div ng-if="ctrl.loggedIn===true">
-                      <button type="button" class="btn btn-light"  ng-click="toggleEditModal(comments.id)">Edit</button>
+                      <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button>
                     </div>
-
-                    <hr>
                   </li>
                 </div>
               </ul>
             </div>
-
-
+            <br><br><hr class="cloud">
         </li>
       </ul>
+      <br><br>
     </div>
+    <hr>
   </div>
-
-
+  <hr class="cloud">
+  <br><br>
 </div>
-
 </div>
   <!-- END of discussion board section  -->
 
@@ -174,7 +179,7 @@
       <div class="form-group row">
         <div class="col-sm-10">
           <!-- <input type="submit" class="btn btn-light" place="submit post"> -->
-          <button ng-click='toggleModal()' type="submit" class="btn btn-light">submit</button>
+          <button ng-click='toggleModal()' type="submit" class="btn btn-dark">submit</button>
         </div>
       </div>
     </form>
@@ -210,7 +215,7 @@
       <div class="form-group row">
         <div class="col-sm-10">
           <!-- <input type="submit" class="btn btn-light" place="submit comment"> -->
-          <button ng-click='toggleModal()' type="submit" class="btn btn-light">submit</button>
+          <button ng-click='toggleModal()' type="submit" class="btn btn-dark">submit</button>
         </div>
       </div>
     </form>
@@ -226,7 +231,7 @@
      <h3 ng-if="!ctrl.loggedIn" class="deletemsg"> <span style="font-weight: bold; font-size: 40px;">Whoa there!</span> <br><br>  you can't just delete comments you didn't create, that's very Kim Jong-un of you.<br> <br> </h3>
      <div >
        <form ng-submit="ctrl.deleteComment(ctrl.commentToDelete);">
-          <input type="submit" value="Delete" class="btn btn-light">
+          <input type="submit" value="Delete" class="btn btn-dark">
        </form>
      </div>
    </modal-dialog>
@@ -247,19 +252,19 @@
             <label for="inputUsername" class="col-sm-2 col-form-label">Name
             </label>
             <div class="col-sm-10">
-              <input ng-model="ctrl.commentData.username" type="text" class="form-control" placeholder="Enter your name">
+              <input ng-model="ctrl.updatedCommentData.username" type="text" class="form-control" placeholder="Enter your name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputAddComment" class="col-sm-2 col-form-label">Add your comment</label>
             <div class="col-sm-10">
-              <textarea ng-model="ctrl.commentData.addComment" type="text" class="form-control" placeholder="Enter text here"></textarea>
+              <textarea ng-model="ctrl.updatedCommentData.addComment" type="text" class="form-control" placeholder="Enter text here"></textarea>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-10">
 
-              <input type="submit" class="btn btn-light" placeholder="submit">
+              <input type="submit" class="btn btn-dark" placeholder="submit">
             </div>
           </div>
 
