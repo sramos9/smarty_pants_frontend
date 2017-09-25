@@ -277,10 +277,6 @@ this.editComment = function(commentsId){
   console.log(commentsId, '******* comment to edit');
   if(this.loggedIn === false){
     console.log('cannot edit comment, not logged in');
-  // } else if (this.userId != this.commentsId) {
-  //     this.loggedIn = false;
-    // trying to say if logged in but not the user that created this comment then can't delete
-
   } else {
     this.loggedIn = true;
 
@@ -312,10 +308,6 @@ this.deleteComment = function(commentsId){
   console.log(commentsId, '******* comment to delete');
   if(this.loggedIn === false){
     console.log('cannot delete comment, not logged in');
-  // } else if (this.userId != this.commentsId) {
-  //     this.loggedIn = false;
-    // trying to say if logged in but not the user that created this comment then can't delete
-
   } else {
     this.loggedIn = true;
 

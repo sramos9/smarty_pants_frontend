@@ -127,11 +127,11 @@
                     {{comments.addComment}}
                     <br><hr>
 
-                    <div ng-if=" ctrl.userId===ctrl.comments.user_id">
+                    <div ng-if=" ctrl.userId===comments.user_id">
                       <!-- <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button> -->
                     </div>
                     <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button>
-                    <div ng-if="ctrl.userId===ctrl.comments.user_id">
+                    <div ng-if="ctrl.userId===comments.user_id">
                       <!-- <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button> -->
                     </div>
                     <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button>
