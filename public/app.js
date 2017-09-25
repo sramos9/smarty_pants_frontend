@@ -5,7 +5,7 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   $scope.modalShown = false;
   const controller = this;
   this.message = "controller works";
-  this.url = "https://smartypantsbackend.herokuapp.com";
+  this.url = 'https://smartypantsbackend.herokuapp.com';
     // 'http://localhost:3000'
   this.post = {};
   this.formData = {};
