@@ -13,9 +13,13 @@ body {
   background-color: #F9F9F9;
 }
 
-.reg{
-  font-size: 25px;
+.navbar-brand{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 24px;
 }
+/*#reg{
+  font-size: 25px;
+}*/
 
 .jumbotron {
 background-image: url('http://qmedinfo.pl/images/templates/news.jpg');
@@ -111,10 +115,11 @@ ul {
 
 .commentThread {
   text-align: center;
-  border: 1px solid grey;
-  background-color: Gainsboro;
+  /*border: 1px solid grey;*/
+  /*background-color: Gainsboro;*/
   width: 80%;
-  
+  color: #800080;
+
 }
 
 .commentTitle {
@@ -122,6 +127,10 @@ ul {
   font-weight: bold;
   font-family: 'Permanent Marker', cursive;
   margin: 0;
+}
+
+#delete, #edit {
+  display: inline-block;
 }
 
 .ng-modal-dialog {

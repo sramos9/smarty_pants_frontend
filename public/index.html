@@ -17,37 +17,54 @@
 <body ng-controller="spController as ctrl">
   <!-- {{ctrl.message}} -->
 
-  <!-- REGISTER form  -->
-  <div ng-if="ctrl.loggedIn==false" id="authForms">
-    <a ng-click="ctrl.displayReg=!ctrl.displayReg" class="reg">Register</a>
-    <div ng-if="ctrl.displayReg==true">
-      <form ng-submit="ctrl.createUser(userPass)">
-        <input type="text" ng-model="userPass.username" placeholder="username"/>
-        <input type="password" ng-model="userPass.password" placeholder="password"/>
-        <input class="btn btn-dark" type="submit" />
-      </form>
-    </div>
-  </div><br>
+  <nav class="navbar navbar-expand-lg" style="background-color: #800080">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#" style="color: white;">Smarty Pants</a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link disabled" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#news" style="color: white;">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#disB" style="color: white;">Discussion Board</a>
+        </li>
+        <li class="nav-item">
+          <div ng-if="ctrl.loggedIn==false" id="authForms">
+            <a ng-click="ctrl.displayReg=!ctrl.displayReg" class="nav-link"  id="reg" style="color: white;">Register</a>
+            <div ng-if="ctrl.displayReg==true">
+              <form ng-submit="ctrl.createUser(userPass)">
+                <input type="text" ng-model="userPass.username" placeholder="username"/>
+                <input type="password" ng-model="userPass.password" placeholder="password"/>
+                <input class="btn btn-dark" type="submit" />
+              </form>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div ng-if="ctrl.loggedIn==false" id="authForms">
+              <a ng-click="ctrl.displayLog=!ctrl.displayLog" class="nav-link" id="reg" style="color: white;">Login</a>
+              <div ng-if="ctrl.displayLog==true">
+              <form ng-submit="ctrl.login(userPass);">
+                  <input type="text" ng-model="userPass.username" placeholder="username"/>
+                  <input type="password" ng-model="userPass.password" placeholder="password"/>
+                  <input class="btn btn-dark" type="submit"/>
+              </form>
+            </div>
+            <div ng-if="ctrl.loggedIn">
+              <p>  Logged in as {{ ctrl.user.username }} </p>
+                <a ng-click"ctrl.logout()" class="btn btn-dark">Log Out</a>
 
-  <!-- end REGISTER form  -->
-  <!-- login form  -->
-  <div ng-if="ctrl.loggedIn==false" id="authForms">
-      <a ng-click="ctrl.displayLog=!ctrl.displayLog" class="reg">Login</a>
-      <div ng-if="ctrl.displayLog==true">
-      <form ng-submit="ctrl.login(userPass);">
-          <input type="text" ng-model="userPass.username" placeholder="username"/>
-          <input type="password" ng-model="userPass.password" placeholder="password"/>
-          <input class="btn btn-dark" type="submit"/>
-      </form>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div ng-if="ctrl.loggedIn">
-      <p>  Logged in as {{ ctrl.user.username }} </p>
-        <a ng-click"ctrl.logout()" class="btn btn-dark">Log Out</a>
-
-    </div>
-  </div>
-  <!--  end login form  -->
-
+  </nav>
 
   <!-- <h4 ng-click="ctrl.getUsers()">click to see secret</h4> -->
 
@@ -55,7 +72,6 @@
   <div ng-repeat="user in ctrl.users">
    <h1>{{user.username}}</h1> {{ctrl.error}}
  </div> -->
-
 
 
   <div class="jumbotron">
@@ -67,6 +83,7 @@
   <!-- end of jumbotron -->
   <!-- ******************************************************************************************* -->
   <!-- beginning of new api info - list of top articles  -->
+<a id="news"></a>
 <div class="container">
   <div class="row">
     <div class="col" id="newsApi">
@@ -75,22 +92,23 @@
       <h2 class="newsHeader">Stay in the know! <br>Latest Articles:</h2>
       <ul ng-repeat="article in ctrl.news.articles">
         <li>
+          <div>
+            <img class="urlImg"  ng-src="{{article.urlToImage}}">
+            <br>
+            <br>
+          </div>
           <div ng-click="ctrl.grabTitle(article)" class="authTitle">
             {{article.author}} <br>
             {{article.title}}
           </div>
           {{article.description}} <br>
-          {{article.url}} <br>
-          {{article.publishedAt}}
+          <a href="{{article.url}}" target="_blank">{{article.url}}</a>
            <br>
+          {{article.publishedAt}}
+           <br><br>
+           <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
           <br>
-          <div>
-            <img class="urlImg"  ng-src="{{article.urlToImage}}">
-            <br>
-            <br>
-            <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
-          </div>
-          <hr class="cloud">
+          <hr class="cloud"> <br>
         </li>
       </ul>
     </div>
@@ -100,6 +118,7 @@
   <!-- ********************************************** -->
   <!-- right col discussionBoard -->
     <!-- ********************************************** -->
+  <a id="disB"></a>
   <div class="col" id="discussionBoard">
       <h2 class="spBoardTitle">Smarty Pants <br> Discussion Board</h2>
       <ul ng-repeat="allPosts in ctrl.newFormPost">
@@ -115,6 +134,7 @@
             </div>
             <!-- <hr> -->
             <!-- split posts and list of comments for each post -->
+
             <div class="commentThread">
               <p class="commentTitle">Comments about this post:</p> <br>
               <ul ng-repeat="comments in allPosts.comments">
@@ -130,11 +150,11 @@
                     <div ng-if=" ctrl.userId===comments.user_id">
                       <!-- <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button> -->
                     </div>
-                    <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button>
+                    <button type="button" class="btn btn-dark" id="delete"   ng-click="toggleDeleteModal(comments.id)">Delete</button>
                     <div ng-if="ctrl.userId===comments.user_id">
                       <!-- <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button> -->
                     </div>
-                    <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button>
+                    <button type="button" class="btn btn-dark" id="edit"  ng-click="toggleEditModal(comments.id)">Edit</button>
                   </li>
                 </div>
               </ul>
@@ -146,7 +166,6 @@
     </div>
     <hr>
   </div>
-  <hr class="cloud">
   <br><br>
 </div>
 </div>
@@ -217,7 +236,7 @@
         <div class="col-sm-10">
           <!-- <input type="submit" class="btn btn-light" place="submit comment"> -->
           <button ng-click='toggleModal()' type="submit" class="btn btn-dark">submit</button>
-        </div>
+        </div><br><br>
       </div>
     </form>
   </modal-dialog>
@@ -232,7 +251,7 @@
      <h3 ng-if="!ctrl.loggedIn" class="deletemsg"> <span style="font-weight: bold; font-size: 40px;">Whoa there!</span> <br><br>  you can't just delete comments you didn't create, that's very Kim Jong-un of you.<br> <br> </h3>
      <div >
        <form ng-submit="ctrl.deleteComment(ctrl.commentToDelete);">
-          <input type="submit" value="Delete" class="btn btn-dark">
+          <input type="submit" value="Delete" class="btn btn-dark" style="display: inline;">
        </form>
      </div>
    </modal-dialog>
@@ -265,7 +284,7 @@
           <div class="form-group row">
             <div class="col-sm-10">
 
-              <input type="submit" class="btn btn-dark" placeholder="submit">
+              <input type="submit" class="btn btn-dark" placeholder="submit" style="display: inline;">
             </div>
           </div>
 
