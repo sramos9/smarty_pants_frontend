@@ -7,7 +7,6 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   this.message = "controller works";
   this.url = 'https://smartypantsbackend.herokuapp.com';
   // this.url = 'http://localhost:3000';
-  
   this.post = {};
   this.formData = {};
   // this.testArray = [1, 2, 3];

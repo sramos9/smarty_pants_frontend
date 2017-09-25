@@ -47,17 +47,17 @@
         </li>
         <li class="nav-item">
           <div ng-if="ctrl.loggedIn==false" id="authForms">
-              <a ng-click="ctrl.displayLog=!ctrl.displayLog" class="nav-link" id="reg" style="color: white;">Login</a>
-              <div ng-if="ctrl.displayLog==true">
+            <a ng-click="ctrl.displayLog=!ctrl.displayLog" class="nav-link" id="reg" style="color: white;">Login</a>
+            <div ng-if="ctrl.displayLog==true">
               <form ng-submit="ctrl.login(userPass);">
-                  <input type="text" ng-model="userPass.username" placeholder="username"/>
-                  <input type="password" ng-model="userPass.password" placeholder="password"/>
-                  <input class="btn btn-dark" type="submit"/>
+                <input type="text" ng-model="userPass.username" placeholder="username"/>
+                <input type="password" ng-model="userPass.password" placeholder="password"/>
+                <input class="btn btn-dark" type="submit"/>
               </form>
             </div>
             <div ng-if="ctrl.loggedIn">
               <p>  Logged in as {{ ctrl.user.username }} </p>
-                <a ng-click"ctrl.logout()" class="btn btn-dark">Log Out</a>
+              <a ng-click"ctrl.logout()" class="btn btn-dark">Log Out</a>
 
             </div>
           </div>
@@ -70,12 +70,12 @@
 
   <!-- <div> {{ctrl.error}}</div>
   <div ng-repeat="user in ctrl.users">
-   <h1>{{user.username}}</h1> {{ctrl.error}}
- </div> -->
+  <h1>{{user.username}}</h1> {{ctrl.error}}
+</div> -->
 
 
-  <div class="jumbotron">
-    <h1 id="smarty">SMARTY PANTS</div>
+<div class="jumbotron">
+  <h1 id="smarty">SMARTY PANTS</div>
   </h1>
   <p class="about">
     Listen, I know it's hard to live your life and stay current on the dumpster fire that's going on in the world. I don't want to scare you, but it's bad out there. I want to help you sound as smart as possible in those dreadful run-ins with your neighbor. Worse even, when you're forced to have small talk with your co-workers while you wait for the coffee to brew. If you feel passionate about something you read, please discuss and be a part of the conversation!
@@ -83,190 +83,190 @@
   <!-- end of jumbotron -->
   <!-- ******************************************************************************************* -->
   <!-- beginning of new api info - list of top articles  -->
-<a id="news"></a>
-<div class="container">
-  <div class="row">
-    <div class="col" id="newsApi">
+  <a id="news"></a>
+  <div class="container">
+    <div class="row">
+      <div class="col" id="newsApi">
 
-    <div class="newsResults">
-      <h2 class="newsHeader">Stay in the know! <br>Latest Articles:</h2>
-      <ul ng-repeat="article in ctrl.news.articles">
-        <li>
-          <div>
-            <img class="urlImg"  ng-src="{{article.urlToImage}}">
-            <br>
-            <br>
-          </div>
-          <div ng-click="ctrl.grabTitle(article)" class="authTitle">
-            {{article.author}} <br>
-            {{article.title}}
-          </div>
-          {{article.description}} <br>
-          <a href="{{article.url}}" target="_blank">{{article.url}}</a>
-           <br>
-          {{article.publishedAt}}
-           <br><br>
-           <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
-          <br>
-          <hr class="cloud"> <br>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- ********************************************** -->
-  <!-- END of new api info - list of top articles  -->
-  <!-- ********************************************** -->
-  <!-- right col discussionBoard -->
-    <!-- ********************************************** -->
-  <a id="disB"></a>
-  <div class="col" id="discussionBoard">
-      <h2 class="spBoardTitle">Smarty Pants <br> Discussion Board</h2>
-      <ul ng-repeat="allPosts in ctrl.newFormPost">
-        <li>
-          <div class="singlePost">
-            <div ng-click="ctrl.currentPost(allPosts.id)">
-              <p class="onePostName">{{allPosts.username}}</p>
-              {{allPosts.title}}<br>
-              {{allPosts.content}}<br>
+        <div class="newsResults">
+          <h2 class="newsHeader">Stay in the know! <br>Latest Articles:</h2>
+          <ul ng-repeat="article in ctrl.news.articles">
+            <li>
+              <div>
+                <img class="urlImg"  ng-src="{{article.urlToImage}}">
+                <br>
+                <br>
+              </div>
+              <div ng-click="ctrl.grabTitle(article)" class="authTitle">
+                {{article.author}} <br>
+                {{article.title}}
+              </div>
+              {{article.description}} <br>
+              <a href="{{article.url}}" target="_blank">{{article.url}}</a>
               <br>
-              <button ng-click="toggleModal()" type="button" class="btn btn-dark">add comment</button>
-              <hr>
-            </div>
-            <!-- <hr> -->
-            <!-- split posts and list of comments for each post -->
+              {{article.publishedAt}}
+              <br><br>
+              <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
+              <br>
+              <hr class="cloud"> <br>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- ********************************************** -->
+      <!-- END of new api info - list of top articles  -->
+      <!-- ********************************************** -->
+      <!-- right col discussionBoard -->
+      <!-- ********************************************** -->
+      <a id="disB"></a>
+      <div class="col" id="discussionBoard">
+        <h2 class="spBoardTitle">Smarty Pants <br> Discussion Board</h2>
+        <ul ng-repeat="allPosts in ctrl.newFormPost">
+          <li>
+            <div class="singlePost">
+              <div ng-click="ctrl.currentPost(allPosts.id)">
+                <p class="onePostName">{{allPosts.username}}</p>
+                {{allPosts.title}}<br>
+                {{allPosts.content}}<br>
+                <br>
+                <button ng-click="toggleModal()" type="button" class="btn btn-dark">add comment</button>
+                <hr>
+              </div>
+              <!-- <hr> -->
+              <!-- split posts and list of comments for each post -->
 
-            <div class="commentThread">
-              <p class="commentTitle">Comments about this post:</p> <br>
-              <ul ng-repeat="comments in allPosts.comments">
-                <div ng-click="ctrl.currentComment(comments.id);">
+              <div class="commentThread">
+                <p class="commentTitle">Comments about this post:</p> <br>
+                <ul ng-repeat="comments in allPosts.comments">
+                  <div ng-click="ctrl.currentComment(comments.id);">
 
-                <li><br>
-                    <p class="onePostName">
-                      {{comments.username}}
-                    </p>
-                    {{comments.addComment}}
-                    <br><hr>
+                    <li><br>
+                      <p class="onePostName">
+                        {{comments.username}}
+                      </p>
+                      {{comments.addComment}}
+                      <br><hr>
 
-                    <div ng-if=" ctrl.userId===comments.user_id">
-                      <!-- <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button> -->
-                    </div>
-                    <button type="button" class="btn btn-dark" id="delete"   ng-click="toggleDeleteModal(comments.id)">Delete</button>
-                    <div ng-if="ctrl.userId===comments.user_id">
-                      <!-- <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button> -->
-                    </div>
-                    <button type="button" class="btn btn-dark" id="edit"  ng-click="toggleEditModal(comments.id)">Edit</button>
-                  </li>
-                </div>
-              </ul>
-            </div>
-            <br><br><hr class="cloud">
-        </li>
-      </ul>
+                      <div ng-if=" ctrl.userId===comments.user_id">
+                        <!-- <button type="button" class="btn btn-dark"  ng-click="toggleDeleteModal(comments.id)">Delete</button> -->
+                      </div>
+                      <button type="button" class="btn btn-dark" id="delete"   ng-click="toggleDeleteModal(comments.id)">Delete</button>
+                      <div ng-if="ctrl.userId===comments.user_id">
+                        <!-- <button type="button" class="btn btn-dark"  ng-click="toggleEditModal(comments.id)">Edit</button> -->
+                      </div>
+                      <button type="button" class="btn btn-dark" id="edit"  ng-click="toggleEditModal(comments.id)">Edit</button>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <br><br><hr class="cloud">
+            </li>
+          </ul>
+          <br><br>
+        </div>
+        <hr>
+      </div>
       <br><br>
     </div>
-    <hr>
   </div>
-  <br><br>
-</div>
-</div>
   <!-- END of discussion board section  -->
 
 
-<!-- regular form starts here, above is modal divs  -->
-<div class="postModal">
-  <modal-dialog show='modalShown2' width='750px' height='60%'>
-    <!-- <div class="container" id="newPostModal"> -->
-    <h2>Discuss this article</h2>
-    <form ng-submit="ctrl.newPost();">
-      <div class="form-group row">
-        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-          <input ng-model="ctrl.formData.username" type="text" class="form-control" placeholder="Enter your name">
+  <!-- regular form starts here, above is modal divs  -->
+  <div class="postModal">
+    <modal-dialog show='modalShown2' width='750px' height='60%'>
+      <!-- <div class="container" id="newPostModal"> -->
+      <h2>Discuss this article</h2>
+      <form ng-submit="ctrl.newPost();">
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input ng-model="ctrl.formData.username" type="text" class="form-control" placeholder="Enter your name">
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="articleTitle" class="col-sm-2 col-form-label">Article to discuss</label>
-        <div class="col-sm-10">
-          {{ctrl.title}}
+        <div class="form-group row">
+          <label for="articleTitle" class="col-sm-2 col-form-label">Article to discuss</label>
+          <div class="col-sm-10">
+            {{ctrl.title}}
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="inputContent" class="col-sm-2 col-form-label">Share your thoughts</label>
-        <div class="col-sm-10">
-          <textarea ng-model="ctrl.formData.content" type="text" class="form-control" placeholder="Enter text here"></textarea>
+        <div class="form-group row">
+          <label for="inputContent" class="col-sm-2 col-form-label">Share your thoughts</label>
+          <div class="col-sm-10">
+            <textarea ng-model="ctrl.formData.content" type="text" class="form-control" placeholder="Enter text here"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <!-- <input type="submit" class="btn btn-light" place="submit post"> -->
-          <input ng-click='togglePostModal()' type="submit" class="btn btn-dark">submit</input>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <!-- <input type="submit" class="btn btn-light" place="submit post"> -->
+            <button ng-click='togglePostModal()' type="submit" class="btn btn-dark">submit</button>
+          </div>
         </div>
-      </div>
-    </form>
-  </modal-dialog>
-</div>
+      </form>
+    </modal-dialog>
+  </div>
 
-<!--  END OF modal for create post section  -->
+  <!--  END OF modal for create post section  -->
 
 
 
   <!-- add comment modal  -->
-<div class="commentModal">
-  <modal-dialog show='modalShown' width='750px' height='60%'>
-    <br><br>
-    <h2>Discuss this Post?</h2>
+  <div class="commentModal">
+    <modal-dialog show='modalShown' width='750px' height='60%'>
       <br><br>
-  <h3 ng-if="!ctrl.loggedIn" class="errormsg"> <span style="font-weight: bold; font-size: 40px;">Bummer!</span> <br><br> Only registered users can comment on posts.<br> <br> Register or Login to discuss.</h3>
+      <h2>Discuss this Post?</h2>
+      <br><br>
+      <h3 ng-if="!ctrl.loggedIn" class="errormsg"> <span style="font-weight: bold; font-size: 40px;">Bummer!</span> <br><br> Only registered users can comment on posts.<br> <br> Register or Login to discuss.</h3>
 
-    <form ng-if="ctrl.loggedIn"  ng-submit="ctrl.createComment();">
-      <div class="form-group row">
-        <label for="inputUsername" class="col-sm-2 col-form-label">Name
-        </label>
-        <div class="col-sm-10">
-          <input ng-model="ctrl.commentData.username" type="text" class="form-control" placeholder="Enter your name">
+      <form ng-if="ctrl.loggedIn"  ng-submit="ctrl.createComment();">
+        <div class="form-group row">
+          <label for="inputUsername" class="col-sm-2 col-form-label">Name
+          </label>
+          <div class="col-sm-10">
+            <input ng-model="ctrl.commentData.username" type="text" class="form-control" placeholder="Enter your name">
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="inputAddComment" class="col-sm-2 col-form-label">Add your comment</label>
-        <div class="col-sm-10">
-          <textarea ng-model="ctrl.commentData.addComment" type="text" class="form-control" placeholder="Enter text here"></textarea>
+        <div class="form-group row">
+          <label for="inputAddComment" class="col-sm-2 col-form-label">Add your comment</label>
+          <div class="col-sm-10">
+            <textarea ng-model="ctrl.commentData.addComment" type="text" class="form-control" placeholder="Enter text here"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <!-- <input type="submit" class="btn btn-light" place="submit comment"> -->
-          <button ng-click='toggleModal()' type="submit" class="btn btn-dark">submit</button>
-        </div><br><br>
-      </div>
-    </form>
-  </modal-dialog>
-</div>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <!-- <input type="submit" class="btn btn-light" place="submit comment"> -->
+            <button ng-click='toggleModal()' type="submit" class="btn btn-dark">submit</button>
+          </div><br><br>
+        </div>
+      </form>
+    </modal-dialog>
+  </div>
   <!-- end of comment modal  -->
   <!-- =====================================================================================-->
- <!-- delete button modal  -->
+  <!-- delete button modal  -->
 
- <div class="deleteModal">
-   <modal-dialog show='modalShown3' width='750px' height='60%'>
-     <br><br><h2>Delete this Comment?</h2><br><br>
-     <h3 ng-if="!ctrl.loggedIn" class="deletemsg"> <span style="font-weight: bold; font-size: 40px;">Whoa there!</span> <br><br>  you can't just delete comments you didn't create, that's very Kim Jong-un of you.<br> <br> </h3>
-     <div >
-       <form ng-submit="ctrl.deleteComment(ctrl.commentToDelete);">
+  <div class="deleteModal">
+    <modal-dialog show='modalShown3' width='750px' height='60%'>
+      <br><br><h2>Delete this Comment?</h2><br><br>
+      <h3 ng-if="!ctrl.loggedIn" class="deletemsg"> <span style="font-weight: bold; font-size: 40px;">Whoa there!</span> <br><br>  you can't just delete comments you didn't create, that's very Kim Jong-un of you.<br> <br> </h3>
+      <div >
+        <form ng-submit="ctrl.deleteComment(ctrl.commentToDelete);">
           <input type="submit" value="Delete" class="btn btn-dark" style="display: inline;">
-       </form>
-     </div>
-   </modal-dialog>
- </div>
- <!--     end delete button modal  -->
+        </form>
+      </div>
+    </modal-dialog>
+  </div>
+  <!--     end delete button modal  -->
 
- <!-- =====================================================================================-->
-<!-- EDIT button modal  -->
+  <!-- =====================================================================================-->
+  <!-- EDIT button modal  -->
 
-<div class="editModal">
-  <modal-dialog show='modalShown4' width='750px' height='60%'>
-    <br><br><h2>Edit this Comment?</h2><br><br>
-    <h3 ng-if="!ctrl.loggedIn" class="deletemsg"> <span style="font-weight: bold; font-size: 40px;">Whoa there!</span> <br><br>  you can't just edit comments you didn't create, that's very Putin of you.<br> <br> </h3>
-    <div >
-      <form ng-if="ctrl.loggedIn"  ng-submit="ctrl.editComment(ctrl.commentToEdit);">
+  <div class="editModal">
+    <modal-dialog show='modalShown4' width='750px' height='60%'>
+      <br><br><h2>Edit this Comment?</h2><br><br>
+      <h3 ng-if="!ctrl.loggedIn" class="deletemsg"> <span style="font-weight: bold; font-size: 40px;">Whoa there!</span> <br><br>  you can't just edit comments you didn't create, that's very Putin of you.<br> <br> </h3>
+      <div >
+        <form ng-if="ctrl.loggedIn"  ng-submit="ctrl.editComment(ctrl.commentToEdit);">
 
           <div class="form-group row">
             <label for="inputUsername" class="col-sm-2 col-form-label">Name
@@ -288,12 +288,12 @@
             </div>
           </div>
 
-      </form>
-    </div>
-  </modal-dialog>
-</div>
-<!--    END EDIT button modal  -->
+        </form>
+      </div>
+    </modal-dialog>
+  </div>
+  <!--    END EDIT button modal  -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </body>
 </html>
