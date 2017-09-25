@@ -67,22 +67,22 @@ this.login = function(userPass) {
   }.bind(this));
 };
 
-this.getUsers = function() {
-  $http({
-    url: this.url + '/users',
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-    }
-  }).then(function(response) {
-    console.log(response);
-    if (response.data.status == 401) {
-        this.error = "Unauthorized";
-    } else {
-      this.users = response.data;
-    }
-  }.bind(this));
-};
+// this.getUsers = function() {
+//   $http({
+//     url: this.url + '/users',
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+//     }
+//   }).then(function(response) {
+//     console.log(response);
+//     if (response.data.status == 401) {
+//         this.error = "Unauthorized";
+//     } else {
+//       this.users = response.data;
+//     }
+//   }.bind(this));
+// };
 
 //-------------------------------
 //    /users/logout
