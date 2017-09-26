@@ -18,9 +18,11 @@
 }
 
 body {
-  background: Gainsboro;
-  /*font-family: 'Raleway', sans-serif;*/
-  /*background-color: rgba(94, 15, 94, 0.1)*/
+  background: lavender;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  /*background: Gainsboro;*/
+
 }
 
 .loginContainer_small{
@@ -29,25 +31,32 @@ body {
   background-color: #F9F9F9;
 }
 
-.navbar {
-  background-color: whitesmoke;
+#mainNav{
+  /*background-color: whitesmoke;*/
   height: 40%;
+background: linear-gradient(to right, rgba(255,97,179,1) 0%, rgba(255,97,179,0.85) 19%, rgba(138,23,121,0.42) 75%, rgba(105,2,105,0.42) 91%);
 }
 
 .navbar li {
 margin: 0 auto;
 }
-.navbar-brand{
-  /*font-size: 24px;*/
-}
-/*#reg{
-  font-size: 25px;
-}*/
+
 
 .nav-link disabled a {
   color: #5e0f5e;
 }
 
+#logout {
+  color: #5e0f5e;
+  font-weight: bolder;
+  list-style: none;
+  text-decoration: none;
+
+}
+
+#logoutDiv {
+  float: right;
+}
 .about {
   padding: 10%;
  margin-top: 10%;
@@ -55,6 +64,8 @@ margin: 0 auto;
  background-color: rgba(255, 255, 255, 0.3);
  /*border-radius: 7px;*/
  height: 70%;
+ font-family: 'Raleway', sans-serif;
+ font-size: 20px;
 }
 
 .carousel {
@@ -109,19 +120,18 @@ ul {
 }
 
 .authTitle {
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 22px;
+  color: #5e0f5e;
 }
 
  #newsApi {
-  /*float: left;*/
-  border: 1px solid black;
-  /*max-width: 45%;
-  padding-top: 1em;
-  padding-left: 1em;
-  margin-left: 4em;
-  */
+  border: 1px solid lightgrey;
   margin-right: 1em;
   background: whitesmoke;
+  overflow-x: scroll;
+  height: 1100px;
+
 }
 
 .urlImg {
@@ -145,16 +155,20 @@ ul {
 }
 
 #discussionBoard {
-  border: 1px solid black;
+  border: 1px solid lightgrey;
   /*max-width: 50%;*/
   /*float: right;*/
   /*padding-left: 1%;*/
   background: whitesmoke;
   margin-left: 1em;
+  overflow-x: scroll;
+  height: 1100px;
 }
 
 .onePostName {
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 22px;
+  color: #5e0f5e;
 }
 
 .singlePost {
@@ -213,6 +227,13 @@ ul {
   display: inline-block;
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
+}
+
+#footer {
+  text-align: center;
+  margin: 0 auto;
+  justify-content: center;
+  background: linear-gradient(to right, rgba(255,97,179,1) 0%, rgba(255,97,179,0.85) 19%, rgba(138,23,121,0.42) 75%, rgba(105,2,105,0.42) 91%);
 }
 
 

@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <!-- bootstrap -->
   <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Crimson+Text|Nunito|Permanent+Marker|Raleway|Seymour+One|Slabo+27px" rel="stylesheet">
   <!-- google fonts -->
@@ -22,7 +22,7 @@
 <body ng-controller="spController as ctrl">
   <!-- {{ctrl.message}} -->
 
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg" id=mainNav>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,55 +60,53 @@
                 <input class="btn btn-dark" type="submit"/>
               </form>
             </div>
-            <div ng-if="ctrl.loggedIn==true">
-              <p>  Logged in as {{ ctrl.user.username }} </p>
-              <a ng-click"ctrl.logout()" class="btn btn-dark">Log Out</a>
-
             </div>
-          </div>
         </li>
       </ul>
+      <div ng-if="ctrl.loggedIn==true" id="logoutDiv">
+        <p style="color: #5e0f5e;">  Smarty Pants user: "{{ ctrl.user.username }}" </p>
+        <a ng-click="ctrl.logout();" id="logout">Log Out</a>
+      </div>
     </div>
   </nav>
 
   <!-- news api carousel  -->
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item" ng-class="{active:!$index}" ng-repeat="article in ctrl.news.articles | limitTo:5">
-      <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+    <div class="carousel-inner">
+      <div class="carousel-item" ng-class="{active:!$index}" ng-repeat="article in ctrl.news.articles | limitTo:5">
+        <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}">
-    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-   <span class="sr-only">Previous</span>
- </a>
- <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-   <span class="sr-only">Next</span>
- </a>
-</div>
-<br><br>
+  <br><br>
 
-   <!-- end news api carousel  -->
+  <!-- end news api carousel  -->
   <!-- ******************************************************************************************* -->
   <!-- beginning of new api info - list of top articles  -->
   <a id="news"></a>
   <div class="container">
     <div class="row">
       <div class="col" id="newsApi">
-
         <div class="newsResults">
           <h2 class="newsHeader">Stay in the know! <br>Latest Articles:</h2>
           <ul ng-repeat="article in ctrl.news.articles">
@@ -202,7 +200,9 @@
       <div id="Modal">
         <h2 class="smartyP">Smarty Pants Community</h2>
         <p class="about">
-          Listen, I know it's hard to live your life and stay current on the dumpster fire that's going on in the world. I don't want to scare you, but it's bad out there. I want to help you sound as smart as possible in those dreadful run-ins with your neighbor. Worse even, when you're forced to have small talk with your co-workers while you wait for the coffee to brew. If you feel passionate about something you read, please discuss and be a part of the conversation!
+          Listen, I know it's hard to live your life and stay current on the dumpster fire that's going on in the world. <br> <br> I don't want to scare you, but it's bad out there. <br><br>
+          I want to help you sound as smart as possible in those dreadful run-ins with your neighbor. Worse even, when you're forced to have small talk with your co-workers while you wait for the coffee to brew. (THE WORST, AM I RIGHT?)<br><br>
+          If you feel passionate about something you read, please discuss and be a part of the conversation!
         </p>
       </div>
     </modal-dialog>
@@ -210,7 +210,7 @@
 
 
 
-        <!-- post modal  -->
+  <!-- post modal  -->
   <div class="postModal" id="Modal">
     <modal-dialog show='modalShown2' width='750px' height='60%'>
       <!-- <div class="container" id="newPostModal"> -->
@@ -333,7 +333,9 @@
   </div>
   <!--    END EDIT button modal  -->
 
-
+  <nav class="navbar fixed-bottom navbar-light bg-light" id="footer">
+    Created By Samantha Ramos | Copyright 2017 All Rights Reserved
+  </nav>
 
 </body>
 </html>

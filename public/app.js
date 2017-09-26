@@ -86,6 +86,8 @@ this.login = function(userPass) {
 
 this.logout = function(){
   localStorage.clear('token');
+  console.log('logout');
+  console.log(localStorage);
   location.reload();
 };
 // ----------------------------
@@ -287,6 +289,7 @@ this.editComment = function(commentsId){
       console.log(response);
       this.newEditComment = response.data;
       console.log(this.newEditComment);
+      $scope.modalShown4 = false;
       this.getPosts();
     }.bind(this),function(error) {
       console.log(error);
@@ -314,6 +317,7 @@ this.deleteComment = function(commentsId){
       url: this.url + '/users/' + this.userId + '/posts/' + this.currentPostId +'/comments/' + commentsId
     }).then(function(response) {
       console.log(response);
+      $scope.modalShown3 = false;
       this.getPosts();
     }.bind(this),function(error) {
       console.log(error);
