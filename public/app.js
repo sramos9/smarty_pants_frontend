@@ -3,10 +3,15 @@ const app = angular.module('smartypants', []);
 
 app.controller('spController', ['$http', '$scope', function($http, $scope) {
   $scope.modalShown = false;
+  $scope.modalShown2 = false;
+  $scope.modalShown3 = false;
+  $scope.modalShown4 = false;
+  $scope.modalShown5 = false;
+
   const controller = this;
   this.message = "controller works";
-  this.url = 'https://smartypantsbackend.herokuapp.com';
-  // this.url = 'http://localhost:3000';
+  // this.url = 'https://smartypantsbackend.herokuapp.com';
+  this.url = 'http://localhost:3000';
   this.post = {};
   this.formData = {};
   // this.testArray = [1, 2, 3];
@@ -19,6 +24,10 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
   this.displayLog = false;
   this.commentToDelete;
   this.commentToEdit;
+
+  $scope.toggleAboutModal = function() {
+    $scope.modalShown5 = !$scope.modalShown5;
+  };
 
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
@@ -40,6 +49,10 @@ app.controller('spController', ['$http', '$scope', function($http, $scope) {
     this.commentToEdit = commentsId;
     controller.currentComment(this.commentToEdit);
     console.log(this.commentToEdit);
+  };
+
+  this.toggleAbout = function(){
+     this.about = !this.about;
   };
   // ----------------------------------
   //   login user  --> /user/login
@@ -67,22 +80,6 @@ this.login = function(userPass) {
   }.bind(this));
 };
 
-// this.getUsers = function() {
-//   $http({
-//     url: this.url + '/users',
-//     method: 'GET',
-//     headers: {
-//       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-//     }
-//   }).then(function(response) {
-//     console.log(response);
-//     if (response.data.status == 401) {
-//         this.error = "Unauthorized";
-//     } else {
-//       this.users = response.data;
-//     }
-//   }.bind(this));
-// };
 
 //-------------------------------
 //    /users/logout
