@@ -2,6 +2,21 @@
   border: 1px dashed gold;
 }*/
 
+@media only screen and (max-width: 992px) {
+  .navbar {
+    display: block;
+  }
+
+  #navbarTogglerDemo01 {
+    display: inline-block;
+  }
+
+  .carousel {
+    padding-top: 10%;
+  }
+
+}
+
 body {
   background: Gainsboro;
   /*font-family: 'Raleway', sans-serif;*/
@@ -16,6 +31,7 @@ body {
 
 .navbar {
   background-color: whitesmoke;
+  height: 40%;
 }
 
 .navbar li {
@@ -41,10 +57,14 @@ margin: 0 auto;
  height: 70%;
 }
 
-.carousel-inner img {
+.carousel {
   height: 30%;
-  width: 50%;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 2em;
+
 }
+
 
 
 /*.jumbotron {

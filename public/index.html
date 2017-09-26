@@ -74,7 +74,13 @@
   <!-- news api carousel  -->
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item" ng-class="{active:!$index}" ng-repeat="article in ctrl.news.articles | limitTo:3">
+    <div class="carousel-item" ng-class="{active:!$index}" ng-repeat="article in ctrl.news.articles | limitTo:5">
+      <a href="{{article.url}}" target="_blank"><img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}"></a>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}">
+    </div>
+    <div class="carousel-item">
       <img class="d-block w-100" ng-src="{{article.urlToImage}}" alt="{{article.description}}">
     </div>
     <div class="carousel-item">
