@@ -4,17 +4,17 @@ SMARTY PANTS
 
 USE THE APP HERE - https://smartypantsnews.herokuapp.com/
 
-smarty_pants_frontend/public/mainpage.png
+![Imgur](https://i.imgur.com/DXWuTLd.png)
 
 * Always stay current with Smarty Pants, which only shows the most current news stories from over 70 worldwide sources.
 https://newsapi.org/
 
-![Imgur](https://i.imgur.com/DXWuTLd.png)
-![alt tag] (https://imgur.com/DXWuTLd)
+![Imgur](https://i.imgur.com/9dEOS5j.png)
+
 
 * You can discuss the articles my submitting a Post to the discussion board, without being a registered user.
 
-smarty_pants_frontend/public/createpost.png
+![Imgur](https://i.imgur.com/OPR81Vf.png)
 
 * Registered users are able to comment on posts in the discussion board, as well as edit or delete their comments.
 
