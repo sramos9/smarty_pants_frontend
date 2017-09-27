@@ -123,16 +123,18 @@
                 <br>
                 <br>
               </div>
-              <div ng-click="ctrl.grabTitle(article)" class="authTitle">
-                {{article.author}} <br>
-                {{article.title}}
-              </div>
-              {{article.description}} <br>
-              <a href="{{article.url}}" target="_blank">{{article.url}}</a>
-              <br>
-              {{article.publishedAt}}
-              <br><br>
-              <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
+              <div ng-click="ctrl.grabTitle(article)">
+                <div  class="authTitle">
+                  {{article.author}} <br>
+                  {{article.title}}
+                </div>
+                {{article.description}} <br>
+                <a href="{{article.url}}" target="_blank">{{article.url}}</a>
+                <br>
+                {{article.publishedAt}}
+                <br><br>
+                <button type="button" class="btn btn-dark"  ng-click="togglePostModal()">discuss</button>
+            </div>
               <br>
               <hr class="cloud"> <br>
             </li>
@@ -154,9 +156,9 @@
           <li>
             <div class="singlePost">
               <div ng-click="ctrl.currentPost(allPosts.id)">
-                <p class="onePostName">{{allPosts.username}}</p>
-                {{allPosts.title}}<br>
-                {{allPosts.content}}<br>
+                <p class="onePostName">{{allPosts.username}}</p> <br>
+                <p class="onePostName">Article Title: </p> {{allPosts.title}}<br><br>
+                <p class="onePostName">Comment:</p>{{allPosts.content}}<br>
                 <br>
                 <button ng-click="toggleModal()" type="button" class="btn btn-dark">add comment</button>
                 <hr>
@@ -171,9 +173,9 @@
 
                     <li><br>
                       <p class="onePostName">
-                        {{comments.username}}
-                      </p>
-                      {{comments.addComment}}
+                      User:  {{comments.username}}
+                      </p> <br>
+                      Comment: {{comments.addComment}}
                       <br><hr>
 
                       <div ng-if=" ctrl.userId===comments.user_id">
