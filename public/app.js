@@ -73,7 +73,6 @@ this.login = function(userPass) {
     }
     console.log('user logged in? ', this.loggedIn);
     console.log('user is: ', this.user);
-    // this.getUsers();
     this.userId = response.data.user.id;
     console.log(this.userId);
 
@@ -103,7 +102,6 @@ this.createUser = function(userPass){
       console.log(response);
       this.user = response.data.user;
       this.loggedIn = true;
-      // controller.getUsers();
     }.bind(this))
   };
 // ----------------------------------

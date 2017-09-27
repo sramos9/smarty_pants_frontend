@@ -71,7 +71,7 @@
         </li>
       </ul>
       <div ng-if="ctrl.loggedIn==true" id="logoutDiv">
-        <p style="color: #5e0f5e;">  Smarty Pants user: "{{ ctrl.user.username }}" </p>
+        <p style="color: #5e0f5e;">  Smarty Pants user {{ ctrl.user.username }} </p>
         <a ng-click="ctrl.logout();" id="logout">Log Out</a>
       </div>
     </div>
