@@ -9,7 +9,8 @@ smarty_pants_frontend/public/mainpage.png
 * Always stay current with Smarty Pants, which only shows the most current news stories from over 70 worldwide sources.
 https://newsapi.org/
 
-[Imgur](https://i.imgur.com/DXWuTLd.png)
+![Imgur](https://i.imgur.com/DXWuTLd.png)
+![alt tag] (https://imgur.com/DXWuTLd)
 
 * You can discuss the articles my submitting a Post to the discussion board, without being a registered user.
 
